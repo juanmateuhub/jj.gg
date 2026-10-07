@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jj.gg</title>
+  <meta name="description" content="Análisis de enfrentamientos de League of Legends: duelos por nivel, fase de líneas y power spikes.">
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="jj.gg, inicio">
+      <svg class="sigil" viewBox="0 0 48 48" aria-hidden="true">
+        <path class="sigil-outer" d="M24 2 44 13.5v21L24 46 4 34.5v-21Z"/>
+        <path class="sigil-inner" d="M24 10 37 17.5v13L24 38 11 30.5v-13Z"/>
+        <path class="sigil-core" d="M24 18 30 24 24 30 18 24Z"/>
+      </svg>
+      <span class="wordmark">jj.gg</span>
+    </a>
+
+    <form id="search" class="search" autocomplete="off" novalidate>
+      <div class="matchup-pick">
+        <div class="picker side-a" data-side="a">
+          <img class="picker-icon" alt="" hidden>
+          <input class="picker-input" id="champ-a" role="combobox" aria-expanded="false" aria-controls="list-a"
+                 aria-autocomplete="list" placeholder="Tu campeón" aria-label="Tu campeón">
+          <ul class="picker-list" id="list-a" role="listbox" hidden></ul>
+        </div>
+        <span class="versus-mark" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 1 19 10 10 19 1 10Z"/></svg></span>
+        <div class="picker side-b" data-side="b">
+          <img class="picker-icon" alt="" hidden>
+          <input class="picker-input" id="champ-b" role="combobox" aria-expanded="false" aria-controls="list-b"
+                 aria-autocomplete="list" placeholder="Rival" aria-label="Rival">
+          <ul class="picker-list" id="list-b" role="listbox" hidden></ul>
+        </div>
+      </div>
+
+      <fieldset class="roles" id="roles"><legend class="sr-only">Rol</legend></fieldset>
+
+      <button type="submit" class="hx-button" id="go"><span class="hx-button-label">Analizar</span></button>
+
+      <button type="button" class="filters-toggle" id="filters-toggle" aria-expanded="false" aria-controls="filters">
+        Filtros <span class="filters-count" id="filters-count" hidden></span>
+      </button>
+      <div class="filters" id="filters" hidden>
+        <label>Parche<select id="patch"></select></label>
+        <label>Servidor<select id="platform"></select></label>
+        <label>Liga mínima<select id="tier-min"></select></label>
+        <label>Liga máxima<select id="tier-max"></select></label>
+        <label class="fa">Hechizo de tu campeón<select id="spell-a"></select></label>
+        <label class="fb">Hechizo del rival<select id="spell-b"></select></label>
+        <label class="fa">Runa de tu campeón<select id="keystone-a"></select></label>
+        <label class="fb">Runa del rival<select id="keystone-b"></select></label>
+      </div>
+    </form>
+    <div class="progress" id="progress" aria-hidden="true"></div>
+  </header>
+
+  <main id="main">
+    <section id="empty" class="empty">
+      <svg class="empty-sigil" viewBox="0 0 200 200" aria-hidden="true">
+        <circle cx="100" cy="100" r="92"/><circle cx="100" cy="100" r="70"/>
+        <path d="M100 8 180 100 100 192 20 100Z"/><path d="M100 40 150 100 100 160 50 100Z"/>
+      </svg>
+      <h1>Prepara tu calle antes de que empiece</h1>
+      <p>Elige tu campeón, el rival y el rol. Verás quién gana los duelos en los niveles clave, cómo evoluciona el oro,
+         qué pasa en la fase de líneas y con qué configuraciones se gana el enfrentamiento.</p>
+      <p class="db-info" id="db-info"></p>
+    </section>
+    <p id="error" class="error" role="alert" hidden></p>
+    <div id="result" hidden></div>
+  </main>
+
+  <footer class="footer">
+    jj.gg no está respaldado por Riot Games y no refleja las opiniones de Riot Games ni de nadie implicado oficialmente
+    en la producción o gestión de sus propiedades. League of Legends es una marca de Riot Games, Inc.
+  </footer>
+
+  <script src="/static/vendor/chart.umd.min.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>
